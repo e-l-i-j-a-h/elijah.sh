@@ -1,0 +1,16 @@
+{
+	"scripts": {
+		"build": "gulp",
+		"dev": "gulp dev",
+		"clean": "gulp clean"
+	},
+	"devDependencies": {
+		"gulp": "^4.0.2",
+		"gulp-minifier": "^3.5.0",
+		"gulp-nunjucks-render": "^2.2.3",
+		"gulp-shell": "^0.8.0",
+		"gulp-svgmin": "^4.1.0",
+		"live-server": "^1.2.2",
+		"rimraf": "^4.4.0"
+	}
+}

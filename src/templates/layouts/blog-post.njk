@@ -1,0 +1,31 @@
+{% extends "layouts/page.njk" %}
+
+{% import "macros/month.njk" as month %}
+
+{% set page_info = {
+	"title": ["blog", (blog_info.title | replace(" ", "_") | lower)] | join(" "),
+	"description": blog_info.description,
+
+	stylesheets: [
+		"/css/blog.css"
+	]
+} %}
+
+{% block main %}
+	<article>
+		<div class="blog-header">
+			<h1>{{ blog_info.title }}</h1>
+			<p class="blog-publish-date">
+				Published
+				{{ month.to_name(blog_info.date.month) }}
+				{{ blog_info.date.day }},
+				{{ blog_info.date.year }}
+			</p>
+			<a href="{{ blog_info.thumbnail }}" target="_blank">
+				<img class="blog-thumbnail" src="{{ blog_info.thumbnail }}">
+			</a>
+			<p>{{ blog_info.description }}</p>
+		</div>
+		{% block article %}{% endblock %}
+	</article>
+{% endblock %}

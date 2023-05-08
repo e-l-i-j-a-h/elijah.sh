@@ -1,0 +1,5 @@
+{% macro import(urls) %}
+	{% for url in urls %}
+		<script src="{{ url }}"></script>
+	{% endfor %}
+{% endmacro %}

@@ -1,0 +1,18 @@
+{% extends "layouts/blog-post.njk" %}
+
+{% set blog_info = {
+	"title": "My Test Blog",
+	"description": "This is the page for my test blog.",
+	"thumbnail": "/static/images/blog/thumbnails/blog-test.png",
+	"date": {
+		"year": 2023,
+		"month": 5,
+		"day": 8
+	}
+} %}
+
+{% block article %}
+	<h2>What is This?</h2>
+	<p>I need to make sure my blog template works so I can quickly spin up my own blog posts. I want to be able to use full markdown capabilities as well.</p>
+	<p>Have a free&nbsp;<marquee style="display: inline-block; width: 4em;">marquee</marquee>.</p>
+{% endblock %}

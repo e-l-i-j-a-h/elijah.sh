@@ -1,0 +1,60 @@
+{% import "macros/stylesheet.njk" as stylesheet %}
+{% import "macros/script.njk" as script %}
+
+{% set site_title = "./elijah.sh" %}
+{% set full_title = [site_title, page_info.title] | join(" ") %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="icon" href="/static/images/favicon-light.svg">
+
+	{{ stylesheet.import([
+		"/css/config.css",
+		"/css/fonts.css",
+		"/css/root.css",
+		"/css/body.css",
+		"/css/page.css",
+		"/css/main.css",
+		"/css/header.css",
+		"/css/footer.css"
+	]) }}
+	{{ stylesheet.import(page_info.stylesheets) }}
+
+	{{ script.import([
+		"/js/theme.js"
+	]) }}
+	{{ script.import(page_info.scripts) }}
+
+	<title>{{ full_title }}</title>
+	<meta name="description" content="{{ page_info.description }}">
+	<meta property="og:title" content="{{ full_title }}">
+	<meta property="og:description" content="{{ page_info.description }}">
+	<meta property="og:image" content="/static/images/ogp-thumbnail-dark.svg">
+
+</head>
+
+<body>
+	<div id="page">
+
+		<header>
+			{% include "partials/header.njk" %}
+		</header>
+
+		<main>
+			{% block main %}{% endblock %}
+		</main>
+
+		<footer>
+			{% include "partials/footer.njk" %}
+		</footer>
+
+	</div>
+</body>
+
+</html>

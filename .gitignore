@@ -1,0 +1,8 @@
+# Netlify deploy directory
+public/
+
+# Dependency directories
+node_modules/
+
+# Local Netlify folder
+.netlify

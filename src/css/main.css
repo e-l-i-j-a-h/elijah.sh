@@ -1,0 +1,34 @@
+main {
+	flex: 1;
+	text-align: justify;
+}
+
+main p,
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+	margin: 1em 0;
+}
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+	font-weight: normal;
+}
+
+main h1 { font-size: 2em;       color: var(--fg1); }
+main h2 { font-size: 1.5em;     color: var(--fg2); }
+main h3 { font-size: 1.25em;    color: var(--fg3); }
+main h4 { font-size: 1.125em;   color: var(--fg4); }
+main h5 { font-size: 1.0625em;  color: var(--fg4); }
+main h6 { font-size: 1.03125em; color: var(--fg4); }
+
+main a {
+	color: var(--blue-strong);
+}

@@ -1,0 +1,21 @@
+body {
+	background: var(--bg);
+	margin: 0;
+	box-sizing: border-box;
+	height: 100vh;
+	overflow-y: auto;
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	color: var(--fg);
+}
+
+body * {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body a {
+	transition: color 0.1s;
+}

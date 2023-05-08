@@ -1,0 +1,16 @@
+{% extends "layouts/page.njk" %}
+
+{% set page_info = {
+	"title": "blog",
+	"description": "A collection of my blog posts."
+} %}
+
+{% block main %}
+	<h1>Blog</h1>
+	<ul>
+		{% for blog_post in ctx.blog_posts %}
+			{% from (["views/blog/", blog_post, ".njk"] | join) import blog_info %}
+			<li><a href="/blog/{{ blog_post }}.html">{{ blog_info.title }}</a></li>
+		{% endfor %}
+	</ul>
+{% endblock %}
