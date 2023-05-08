@@ -1,3 +1,3 @@
-# <a href="https://elijah.sh" target="_blank">*`~$ ./elijah.sh`*</a>
+# <a href="https://elijah.sh" target="_blank">*`~$ ./elijah.sh█`*</a>
 
 Coming ~soon~ eventually...
