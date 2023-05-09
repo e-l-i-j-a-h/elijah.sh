@@ -1,6 +1,5 @@
 main {
 	flex: 1;
-	text-align: justify;
 }
 
 main p,
@@ -28,6 +27,10 @@ main h3 { font-size: 1.25em;    color: var(--fg3); }
 main h4 { font-size: 1.125em;   color: var(--fg4); }
 main h5 { font-size: 1.0625em;  color: var(--fg4); }
 main h6 { font-size: 1.03125em; color: var(--fg4); }
+
+main p {
+	text-align: justify;
+}
 
 main a {
 	color: var(--blue-strong);
