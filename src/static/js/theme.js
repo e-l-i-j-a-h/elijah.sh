@@ -77,29 +77,33 @@ var themeSwitcher = (function () {
 		},
 	};
 
-	var preferredColorSchemeWatcher = matchMedia('(prefers-color-scheme: dark)');
+	var preferredColorSchemeWatcher =
+		matchMedia('(prefers-color-scheme: dark)');
 
-	function applyTheme(themeName) {
-		var theme, faviconUrl, vars;
-
+	function applyTheme(themeName, rememberTheme) {
 		if (!(themeName in themes))
 			throw new Error('unknown theme "' + themeName + '"');
 
-		theme = themes[themeName];
-		faviconUrl = theme.faviconUrl;
-		vars = theme.vars;
-
-		document.querySelector('link[rel=icon]').href = faviconUrl;
+		var theme = themes[themeName];
+		var faviconUrl = theme.faviconUrl;
+		var vars = theme.vars;
 
 		for (var key in vars) {
 			document.documentElement.style.setProperty('--' + key, vars[key]);
 		}
 
-		localStorage.setItem('theme', themeName);
+		document.querySelector('link[rel*=icon]').href = faviconUrl;
+
+		if (rememberTheme)
+			localStorage.setItem('theme', themeName);
+	}
+
+	function forget() {
+		localStorage.removeItem('theme');
 	}
 
 	preferredColorSchemeWatcher.addEventListener('change', function (e) {
-		applyTheme(e.matches ? 'dark' : 'light');
+		applyTheme(e.matches ? 'dark' : 'light', false);
 	});
 
 	applyTheme(
@@ -112,6 +116,7 @@ var themeSwitcher = (function () {
 
 		// fallback to dark theme
 		'dark'
+
 	);
 
 	// public
@@ -119,6 +124,7 @@ var themeSwitcher = (function () {
 	return {
 
 		applyTheme: applyTheme,
+		forget: forget,
 
 	};
 
