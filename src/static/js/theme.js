@@ -102,9 +102,15 @@ var themeSwitcher = (function () {
 		localStorage.removeItem('theme');
 	}
 
-	preferredColorSchemeWatcher.addEventListener('change', function (e) {
+	function colorSchemeEvent(e) {
 		applyTheme(e.matches ? 'dark' : 'light', false);
-	});
+	}
+
+	if (MediaQueryList.prototype.addEventListener) {
+		preferredColorSchemeWatcher.addEventListener('change', colorSchemeEvent);
+	} else {
+		preferredColorSchemeWatcher.addListener(colorSchemeEvent);
+	}
 
 	applyTheme(
 
