@@ -14,34 +14,26 @@ const liveServer = require('live-server');
 
 const defaultPort = 8000;
 
-const paths = {
-	src: {
-		views: 'src/templates/views/**/*.njk',
-		css: 'src/css/**/*.css',
-		js: 'src/js/**/*.js',
-		static: 'src/static/**/*',
-	},
-	dst: {
-		views: 'public/',
-		css: 'public/css',
-		js: 'public/js',
-		static: 'public/static',
-	},
+const njkPaths = {
+	'templates': 'src/templates',
+	'blogPosts': 'src/templates/views/blog',
+};
 
-	templateRoot: 'src/templates',
-	blogPosts: 'src/templates/views/blog',
+const gulpPaths = {
+	'views':  { src: 'src/templates/views/**/*.njk', dst: 'public/' },
+	'static': { src: 'src/static/**/*',              dst: 'public/' },
 };
 
 const buildTimestamp = {
 	locale: 'en-US',
 	options: {
-		year: 'numeric',
-		month: 'long',
-		day: '2-digit',
-		hour: '2-digit',
-		minute: '2-digit',
+		year:         'numeric',
+		month:        'long',
+		day:          '2-digit',
+		hour:         '2-digit',
+		minute:       '2-digit',
 		timeZoneName: 'short',
-		timeZone: 'America/New_York',
+		timeZone:     'America/New_York',
 	},
 };
 
@@ -51,9 +43,9 @@ function clean() {
 
 // compile nunjucks view templates
 function processViews() {
-	return src(paths.src.views)
+	return src(gulpPaths['views'].src)
 		.pipe(njk({
-			path: [paths.templateRoot],
+			path: [ njkPaths['templates'] ],
 			data: {
 				ctx: {
 					'build_timestamp':
@@ -62,9 +54,9 @@ function processViews() {
 							buildTimestamp.options
 						),
 					'blog_posts':
-						fs.readdirSync(paths.blogPosts)
-						.map(x => path.parse(x).name)
-						.filter(x => x != 'index'),
+						fs.readdirSync(njkPaths['blogPosts'])
+							.map(x => path.parse(x).name)
+							.filter(x => x != 'index'),
 				},
 			},
 		}))
@@ -72,37 +64,22 @@ function processViews() {
 			minify: true,
 			minifyHTML: { collapseWhitespace: true, },
 		}))
-		.pipe(dest(paths.dst.views));
-}
-
-function processCSS() {
-	return src(paths.src.css)
-		.pipe(minify({
-			minify: true,
-			minifyCSS: { sourceMap: true, },
-		}))
-		.pipe(dest(paths.dst.css));
-}
-
-function processJS() {
-	return src(paths.src.js)
-		.pipe(minify({
-			minify: true,
-			minifyJS: { sourceMap: true, },
-		}))
-		.pipe(dest(paths.dst.js));
+		.pipe(dest(gulpPaths['views'].dst));
 }
 
 function processStatic() {
-	return src(paths.src.static)
-		.pipe(dest(paths.dst.static));
+	return src(gulpPaths['static'].src)
+		.pipe(minify({
+			minify: true,
+			minifyCSS: { sourceMap: true },
+			minifyJS:  { sourceMap: true },
+		}))
+		.pipe(dest(gulpPaths['static'].dst));
 }
 
 function watchAll() {
-	watch(paths.templateRoot, processViews);
-	watch(paths.src.css, processCSS);
-	watch(paths.src.js, processJS);
-	watch(paths.src.static, processStatic);
+	watch(njkPaths['templates'], processViews);
+	watch(gulpPaths['static'].src, processStatic);
 }
 
 function serve() {
@@ -116,8 +93,6 @@ exports.default = series(
 	clean,
 	parallel(
 		processViews,
-		processCSS,
-		processJS,
 		processStatic,
 	),
 );

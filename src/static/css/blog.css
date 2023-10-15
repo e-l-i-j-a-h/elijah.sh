@@ -3,6 +3,10 @@
 	text-align: center;
 }
 
+.blog-header p {
+	text-align: center;
+}
+
 .blog-publish-date {
 	font-style: italic;
 }

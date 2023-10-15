@@ -4,7 +4,7 @@ var themeSwitcher = (function () {
 
 	var themes = {
 		'light': {
-			faviconUrl: '/static/images/favicon-light.svg',
+			faviconUrl: '/images/favicon-light.svg',
 			vars: {
 				'bg': '#fbf1c7',
 				'bg-hard': '#f9f5d7',
@@ -40,7 +40,7 @@ var themeSwitcher = (function () {
 			},
 		},
 		'dark': {
-			faviconUrl: '/static/images/favicon-dark.svg',
+			faviconUrl: '/images/favicon-dark.svg',
 			vars: {
 				'bg': '#282828',
 				'bg-hard': '#1d2021',
