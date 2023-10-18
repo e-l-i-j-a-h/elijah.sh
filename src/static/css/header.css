@@ -6,6 +6,12 @@ header {
 	justify-content: space-between;
 }
 
+@media (orientation: portrait) {
+	header {
+		justify-content: center;
+	}
+}
+
 header .logo {
 	display: block;
 	max-width: 100%;

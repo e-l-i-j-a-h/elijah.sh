@@ -2,3 +2,9 @@
 	--font-family: 'JetBrains Mono';
 	--font-size: 18px;
 }
+
+@media (orientation: portrait) {
+	:root {
+		--font-size: 14px;
+	}
+}
