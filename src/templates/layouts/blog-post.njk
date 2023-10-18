@@ -14,16 +14,26 @@
 {% block main %}
 	<article>
 		<div class="blog-header">
-			<h1>{{ blog_info.title }}</h1>
-			<p class="blog-publish-date">
-				Published
-				{{ month.to_name(blog_info.date.month) }}
-				{{ blog_info.date.day }},
-				{{ blog_info.date.year }}
+			<div class="blog-header-info">
+				<div>
+					<h1>{{ blog_info.title }}</h1>
+					<div class="blog-header-separator-right"></div>
+				</div>
+				<div>
+					<div class="blog-header-separator-left"></div>
+					<p>
+						Published
+						{{ month.to_name(blog_info.date.month) }}
+						{{ blog_info.date.day }},
+						{{ blog_info.date.year }}
+					</p>
+				</div>
+			</div>
+			<p>
+				<a href="{{ blog_info.thumbnail }}" target="_blank">
+					<img class="blog-thumbnail" src="{{ blog_info.thumbnail }}">
+				</a>
 			</p>
-			<a href="{{ blog_info.thumbnail }}" target="_blank">
-				<img class="blog-thumbnail" src="{{ blog_info.thumbnail }}">
-			</a>
 			<p>{{ blog_info.description }}</p>
 		</div>
 		{% block article %}{% endblock %}
