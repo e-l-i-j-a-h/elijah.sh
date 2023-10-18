@@ -17,5 +17,6 @@ body * {
 }
 
 body a {
+	display: inline-block;
 	transition: color 0.1s;
 }
